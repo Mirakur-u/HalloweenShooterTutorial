@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://bukkp4rodryc2"]
+
+[ext_resource type="Texture2D" uid="uid://bloxp2shvndpx" path="res://Assets/Backgrounds/Skybox Castle outside.png" id="1_pc3xo"]
+[ext_resource type="Script" path="res://Scripts/scrolling_background.gd" id="1_twtsb"]
+
+[node name="ScrollingBackground" type="Node2D"]
+script = ExtResource("1_twtsb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(216, 328)
+scale = Vector2(2.74, 2.74)
+texture = ExtResource("1_pc3xo")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(654, 328)
+scale = Vector2(2.74, 2.74)
+texture = ExtResource("1_pc3xo")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(1092, 328)
+scale = Vector2(2.74, 2.74)
+texture = ExtResource("1_pc3xo")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(1524, 328)
+scale = Vector2(2.74, 2.74)
+texture = ExtResource("1_pc3xo")
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+position = Vector2(1956, 328)
+scale = Vector2(2.74, 2.74)
+texture = ExtResource("1_pc3xo")

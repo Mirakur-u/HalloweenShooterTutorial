@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://uinqe3ibfau3"]
+
+[ext_resource type="PackedScene" uid="uid://bukkp4rodryc2" path="res://Scenes/scrolling_background.tscn" id="1_5axje"]
+[ext_resource type="Texture2D" uid="uid://bloxp2shvndpx" path="res://Assets/Backgrounds/Skybox Castle outside.png" id="2_u73bd"]
+[ext_resource type="PackedScene" uid="uid://bvexvgm8o05qi" path="res://Scenes/player.tscn" id="3_birvc"]
+
+[node name="CastleLevel" type="Node"]
+
+[node name="ScrollingBackground" parent="." instance=ExtResource("1_5axje")]
+bg_image = ExtResource("2_u73bd")
+
+[node name="Player" parent="." instance=ExtResource("3_birvc")]
+position = Vector2(210, 258)
