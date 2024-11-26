@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bguttjwd08pdi"]
+
+[ext_resource type="Texture2D" uid="uid://b73dnxj867box" path="res://Assets/Player/wolfie_projectile.png" id="1_ntbnl"]
+[ext_resource type="Script" path="res://Scripts/projectile.gd" id="1_opr3v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cb3cv"]
+size = Vector2(50, 74)
+
+[node name="Projectile" type="Area2D"]
+script = ExtResource("1_opr3v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("1_ntbnl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cb3cv")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -7,4 +7,4 @@ enum PlayerType{
 	Hunter
 }
 
-var player_type: PlayerType = PlayerType.Frankie
+var player_type: PlayerType = PlayerType.Hunter

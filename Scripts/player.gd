@@ -6,8 +6,16 @@ class_name Player
 @export var speed = 400
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var shooting_system: ShootingSystem = $ShootingSystem
+@onready var health_system: HealthSystem = $HealthSystem
 
+var animation_prefix
 var direction
+
+func _ready():
+	animation_prefix = GameConfig.PlayerType.keys()[GameConfig.player_type].to_snake_case()
+	animated_sprite_2d.play("%s_default" %animation_prefix)
+	shooting_system.animation_prefix = animation_prefix
 
 func _process(delta):
 	var direction = Input.get_vector("left","right","up","down")
@@ -26,3 +34,7 @@ func is_within_screen_bounds(next_position: Vector2):
 		return true
 	
 	return false
+
+
+func get_health():
+	return health_system.health

@@ -1,55 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://bvexvgm8o05qi"]
+[gd_scene load_steps=19 format=3 uid="uid://bvexvgm8o05qi"]
 
 [ext_resource type="Texture2D" uid="uid://beheqyio3208x" path="res://Assets/Player/Horror game player animations.png" id="1_6ptct"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_dfxse"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_80p1m"]
-atlas = ExtResource("1_6ptct")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5j83u"]
-atlas = ExtResource("1_6ptct")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_t1yq0"]
-atlas = ExtResource("1_6ptct")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wy0lw"]
-atlas = ExtResource("1_6ptct")
-region = Rect2(0, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_anlmk"]
-atlas = ExtResource("1_6ptct")
-region = Rect2(32, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5lycy"]
-atlas = ExtResource("1_6ptct")
-region = Rect2(64, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cu3nh"]
-atlas = ExtResource("1_6ptct")
-region = Rect2(0, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_d5rgw"]
-atlas = ExtResource("1_6ptct")
-region = Rect2(32, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ps38n"]
-atlas = ExtResource("1_6ptct")
-region = Rect2(64, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_12bh6"]
-atlas = ExtResource("1_6ptct")
-region = Rect2(0, 96, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c20l1"]
-atlas = ExtResource("1_6ptct")
-region = Rect2(32, 96, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b8iw0"]
-atlas = ExtResource("1_6ptct")
-region = Rect2(64, 96, 32, 32)
+[ext_resource type="Script" path="res://Scripts/shooting_system.gd" id="3_3ndcd"]
+[ext_resource type="Script" path="res://Scripts/health_system.gd" id="4_c05lm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rb8yk"]
 atlas = ExtResource("1_6ptct")
@@ -103,47 +57,6 @@ region = Rect2(32, 64, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_80p1m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5j83u")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_t1yq0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wy0lw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_anlmk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5lycy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cu3nh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_d5rgw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ps38n")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_12bh6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c20l1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b8iw0")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_rb8yk")
 }],
 "loop": true,
@@ -195,7 +108,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tlgpa")
 }],
-"loop": true,
+"loop": false,
 "name": &"witch_shooting",
 "speed": 5.0
 }, {
@@ -229,8 +142,17 @@ script = ExtResource("1_dfxse")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_x2qg1")
-animation = &"witch_default"
+animation = &"wolfie_shooting"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-8, 1)
 shape = SubResource("RectangleShape2D_4uq3q")
+
+[node name="ShootingSystem" type="Node2D" parent="."]
+position = Vector2(38, 2)
+script = ExtResource("3_3ndcd")
+
+[node name="HealthSystem" type="Node" parent="."]
+script = ExtResource("4_c05lm")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="ShootingSystem" method="_on_animated_sprite_2d_animation_finished"]
