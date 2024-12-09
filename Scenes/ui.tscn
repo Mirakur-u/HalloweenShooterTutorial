@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://omgmvljwsp7k"]
+[gd_scene load_steps=3 format=3 uid="uid://omgmvljwsp7k"]
 
 [ext_resource type="Script" path="res://Scripts/ui.gd" id="1_g6pix"]
+[ext_resource type="FontFile" uid="uid://d370phyelf2v8" path="res://Assets/font/font.otf" id="2_4iock"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_g6pix")
@@ -21,3 +22,11 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+
+[node name="WaveCounter" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_4iock")
+theme_override_font_sizes/font_size = 32
+text = "Wave 1 of 2"

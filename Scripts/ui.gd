@@ -3,6 +3,7 @@ extends CanvasLayer
 class_name UI
 
 @onready var health_container: HBoxContainer = %HealthContainer
+@onready var wave_counter: Label = $MarginContainer/WaveCounter
 
 const LIFE_FULL_UI = preload("res://Assets/UIElements/LifeFullUI.png")
 const LIFE_HALF_UI = preload("res://Assets/UIElements/LifeHalfUI.png")
@@ -29,3 +30,13 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func decrease_health(current_health):
+	var health_textures = health_container.get_children()
+	if current_health %2 == 0:
+		health_textures.pop_back().queue_free()
+	else:
+		health_textures.back().texture = LIFE_HALF_UI
+
+func on_wave_started(current_wave, total_waves):
+	wave_counter.text = "Wave %d of %d" % [current_wave, total_waves]

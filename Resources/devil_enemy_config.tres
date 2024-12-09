@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnemyConfig" load_steps=5 format=3 uid="uid://cxuf706mhdsyn"]
+
+[ext_resource type="Shape2D" uid="uid://cil3cdjfbnk5k" path="res://Resources/CollisionShapes/devil_collision_shape.tres" id="1_yoh8s"]
+[ext_resource type="Shape2D" uid="uid://dmem2b02ku6kj" path="res://Resources/CollisionShapes/devil_projectile_collision_shape.tres" id="2_sgpbf"]
+[ext_resource type="Texture2D" uid="uid://c2ja7drxgw3a6" path="res://Assets/Enemies/EnemyProjectiles/fireball.png" id="3_xk5lp"]
+[ext_resource type="Script" path="res://Scripts/enemy_config.gd" id="4_lx2ho"]
+
+[resource]
+script = ExtResource("4_lx2ho")
+projectile_collision_shape = ExtResource("2_sgpbf")
+projectile_texture = ExtResource("3_xk5lp")
+enemy_name = "devil"
+enemy_collision_shape = ExtResource("1_yoh8s")

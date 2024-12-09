@@ -3,6 +3,9 @@ extends Area2D
 
 class_name Player
 
+signal player_damaged(current_health: int)
+signal player_died
+
 @export var speed = 400
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
@@ -16,6 +19,8 @@ func _ready():
 	animation_prefix = GameConfig.PlayerType.keys()[GameConfig.player_type].to_snake_case()
 	animated_sprite_2d.play("%s_default" %animation_prefix)
 	shooting_system.animation_prefix = animation_prefix
+	health_system.died.connect(on_died)
+
 
 func _process(delta):
 	var direction = Input.get_vector("left","right","up","down")
@@ -38,3 +43,18 @@ func is_within_screen_bounds(next_position: Vector2):
 
 func get_health():
 	return health_system.health
+
+
+func _on_area_entered(area: Area2D) -> void:
+	health_system.damage(1)
+	player_damaged.emit(get_health())
+	area.queue_free()
+	
+	var blink_tween = get_tree().create_tween()
+	blink_tween.tween_property(animated_sprite_2d, "modulate", Color.RED, .25)
+	blink_tween.chain().tween_property(animated_sprite_2d, "modulate", Color.WHITE, .25)
+	
+
+func on_died():
+	player_died.emit()
+	queue_free()

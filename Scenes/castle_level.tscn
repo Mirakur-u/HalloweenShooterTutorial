@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://uinqe3ibfau3"]
+[gd_scene load_steps=11 format=3 uid="uid://uinqe3ibfau3"]
 
 [ext_resource type="PackedScene" uid="uid://bukkp4rodryc2" path="res://Scenes/scrolling_background.tscn" id="1_5axje"]
 [ext_resource type="Texture2D" uid="uid://bloxp2shvndpx" path="res://Assets/Backgrounds/Skybox Castle outside.png" id="2_u73bd"]
 [ext_resource type="PackedScene" uid="uid://bvexvgm8o05qi" path="res://Scenes/player.tscn" id="3_birvc"]
 [ext_resource type="PackedScene" uid="uid://cwj1p2bi2wd41" path="res://Scenes/level_manager.tscn" id="4_qeor4"]
 [ext_resource type="PackedScene" uid="uid://omgmvljwsp7k" path="res://Scenes/ui.tscn" id="5_b6nwf"]
+[ext_resource type="Script" path="res://Scripts/wave.gd" id="6_r8byh"]
+[ext_resource type="PackedScene" uid="uid://cgg14q58v2t8w" path="res://Scenes/wave_spawner.tscn" id="6_vu3je"]
+[ext_resource type="Resource" uid="uid://cxuf706mhdsyn" path="res://Resources/devil_enemy_config.tres" id="9_f7kke"]
+[ext_resource type="Resource" uid="uid://cg4bcylpuh8da" path="res://Resources/mummy_enemy_config.tres" id="10_de41y"]
+[ext_resource type="Resource" uid="uid://rre65nenvnrw" path="res://Resources/skeleton_enemy_config.tres" id="11_2ry0j"]
 
 [node name="CastleLevel" type="Node"]
 
@@ -17,3 +22,39 @@ bg_image = ExtResource("2_u73bd")
 position = Vector2(210, 258)
 
 [node name="LevelManager" parent="." instance=ExtResource("4_qeor4")]
+
+[node name="WaveSpawner" parent="." node_paths=PackedStringArray("enemy_movement_points") instance=ExtResource("6_vu3je")]
+position = Vector2(1066, 325)
+enemy_movement_points = [NodePath("../EnemyMovementPoints/TopLeft"), NodePath("../EnemyMovementPoints/TopRight"), NodePath("../EnemyMovementPoints/MidLeft"), NodePath("../EnemyMovementPoints/MidRight"), NodePath("../EnemyMovementPoints/BottomLeft"), NodePath("../EnemyMovementPoints/BottomRight")]
+
+[node name="Wave1" type="Node" parent="WaveSpawner"]
+script = ExtResource("6_r8byh")
+devil_config = ExtResource("9_f7kke")
+mummy_config = ExtResource("10_de41y")
+skeleton_config = ExtResource("11_2ry0j")
+
+[node name="Wave2" type="Node" parent="WaveSpawner"]
+script = ExtResource("6_r8byh")
+devil_config = ExtResource("9_f7kke")
+mummy_config = ExtResource("10_de41y")
+skeleton_config = ExtResource("11_2ry0j")
+
+[node name="EnemyMovementPoints" type="Node" parent="."]
+
+[node name="TopLeft" type="Marker2D" parent="EnemyMovementPoints"]
+position = Vector2(709, 46)
+
+[node name="TopRight" type="Marker2D" parent="EnemyMovementPoints"]
+position = Vector2(1044, 46)
+
+[node name="MidLeft" type="Marker2D" parent="EnemyMovementPoints"]
+position = Vector2(709, 306)
+
+[node name="MidRight" type="Marker2D" parent="EnemyMovementPoints"]
+position = Vector2(1044, 306)
+
+[node name="BottomLeft" type="Marker2D" parent="EnemyMovementPoints"]
+position = Vector2(709, 572)
+
+[node name="BottomRight" type="Marker2D" parent="EnemyMovementPoints"]
+position = Vector2(1044, 572)
