@@ -11,7 +11,8 @@ enum ProjectilePattern {
 	SIN,
 	ACOS,
 	ACOSH,
-	TANH
+	TANH,
+	VLAD
 }
 
 @export_group("shooting params")
@@ -41,6 +42,8 @@ func get_vertical_position(x_position: float, delta: float):
 			return acosh(delta * x_position * PI *2 / amplitude) * y_direction
 		ProjectilePattern.TANH:
 			return tanh(delta * x_position * PI *2 / amplitude)
+		ProjectilePattern.VLAD:
+			return x_position * tan(rotation) * delta
 		ProjectilePattern.LINEAR:
 			return 0
 
@@ -52,3 +55,6 @@ func _on_area_entered(area: Area2D) -> void:
 	if area is Projectile:
 		area.queue_free()
 		queue_free()
+
+func set_vlad_pattern():
+	pattern = ProjectilePattern.VLAD

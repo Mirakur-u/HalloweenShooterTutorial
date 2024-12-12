@@ -4,6 +4,7 @@ class_name ShootingSystem
 
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $"../AnimatedSprite2D"
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $"../AudioStreamPlayer2D"
 
 const PROJECTILE = preload("res://Scenes/projectile.tscn")
 
@@ -23,6 +24,9 @@ func shoot():
 	projectile.projectile_prefix = animation_prefix
 	animated_sprite_2d.play("%s_shooting" % animation_prefix)
 	get_tree().root.add_child(projectile)
+	var random_pitch = randf_range(0.9, 1.1)
+	audio_stream_player_2d.pitch_scale = random_pitch
+	audio_stream_player_2d.play()
 
 
 # Called when the node enters the scene tree for the first time.

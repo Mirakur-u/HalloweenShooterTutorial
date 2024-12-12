@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://bvexvgm8o05qi"]
+[gd_scene load_steps=20 format=3 uid="uid://bvexvgm8o05qi"]
 
 [ext_resource type="Texture2D" uid="uid://beheqyio3208x" path="res://Assets/Player/Horror game player animations.png" id="1_6ptct"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_dfxse"]
 [ext_resource type="Script" path="res://Scripts/shooting_system.gd" id="3_3ndcd"]
 [ext_resource type="Script" path="res://Scripts/health_system.gd" id="4_c05lm"]
+[ext_resource type="AudioStream" uid="uid://dv7x2eb2jsebs" path="res://Assets/sounds/shot_sound.wav" id="5_47cn5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rb8yk"]
 atlas = ExtResource("1_6ptct")
@@ -154,6 +155,9 @@ script = ExtResource("3_3ndcd")
 
 [node name="HealthSystem" type="Node" parent="."]
 script = ExtResource("4_c05lm")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_47cn5")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="ShootingSystem" method="_on_animated_sprite_2d_animation_finished"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://uinqe3ibfau3"]
+[gd_scene load_steps=12 format=3 uid="uid://uinqe3ibfau3"]
 
 [ext_resource type="PackedScene" uid="uid://bukkp4rodryc2" path="res://Scenes/scrolling_background.tscn" id="1_5axje"]
 [ext_resource type="Texture2D" uid="uid://bloxp2shvndpx" path="res://Assets/Backgrounds/Skybox Castle outside.png" id="2_u73bd"]
@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://cxuf706mhdsyn" path="res://Resources/devil_enemy_config.tres" id="9_f7kke"]
 [ext_resource type="Resource" uid="uid://cg4bcylpuh8da" path="res://Resources/mummy_enemy_config.tres" id="10_de41y"]
 [ext_resource type="Resource" uid="uid://rre65nenvnrw" path="res://Resources/skeleton_enemy_config.tres" id="11_2ry0j"]
+[ext_resource type="AudioStream" uid="uid://bjdwekoi0haqm" path="res://Assets/music/horror-music.mp3" id="11_vcgs3"]
 
 [node name="CastleLevel" type="Node"]
 
@@ -18,7 +19,7 @@
 [node name="ScrollingBackground" parent="." instance=ExtResource("1_5axje")]
 bg_image = ExtResource("2_u73bd")
 
-[node name="Player" parent="." instance=ExtResource("3_birvc")]
+[node name="Player" parent="." groups=["player"] instance=ExtResource("3_birvc")]
 position = Vector2(210, 258)
 
 [node name="LevelManager" parent="." instance=ExtResource("4_qeor4")]
@@ -32,12 +33,18 @@ script = ExtResource("6_r8byh")
 devil_config = ExtResource("9_f7kke")
 mummy_config = ExtResource("10_de41y")
 skeleton_config = ExtResource("11_2ry0j")
+devils_count = 0
+mummy_count = 0
+skeleton_count = 1
 
 [node name="Wave2" type="Node" parent="WaveSpawner"]
 script = ExtResource("6_r8byh")
 devil_config = ExtResource("9_f7kke")
 mummy_config = ExtResource("10_de41y")
 skeleton_config = ExtResource("11_2ry0j")
+devils_count = 1
+mummy_count = 0
+skeleton_count = 0
 
 [node name="EnemyMovementPoints" type="Node" parent="."]
 
@@ -58,3 +65,7 @@ position = Vector2(709, 572)
 
 [node name="BottomRight" type="Marker2D" parent="EnemyMovementPoints"]
 position = Vector2(1044, 572)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_vcgs3")
+autoplay = true

@@ -9,7 +9,7 @@ signal damaged(damage_taken)
 
 func damage(damage_taken: int):
 	health -= damage_taken
-	damaged.emit(damage_taken)
+	damaged.emit()
 	
 	if health <= 0:
 		died.emit()
